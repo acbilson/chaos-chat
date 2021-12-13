@@ -1,3 +1,5 @@
 .env
-/src/bin
-/src/obj
+/client/src/bin
+/client/src/obj
+/server/src/bin
+/server/src/obj
