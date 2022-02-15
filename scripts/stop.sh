@@ -7,13 +7,10 @@ case $ENVIRONMENT in
 
 uat)
   echo "stops container in uat..."
-  ssh -t ${UAT_HOST} sudo podman stop micropub-uat
 ;;
 
 prod)
   echo "stops container in production..."
-  ssh -t ${PROD_HOST} sudo systemctl disable micropub
-  ssh -t ${PROD_HOST} sudo podman stop micropub
 ;;
 
 *)

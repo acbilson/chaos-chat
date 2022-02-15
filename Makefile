@@ -19,8 +19,16 @@ build: ## builds a local development Docker image
 	. ./scripts/build.sh dev
 
 .PHONY: start
-start: ## starts a local development Docker container
+start: ## starts both local development Docker containers
 	. ./scripts/start.sh dev
+
+.PHONY: start-client
+start-client: ## starts a local development Docker container
+	. ./scripts/start.sh dev client
+
+.PHONY: start-server
+start-server: ## starts a local development Docker container
+	. ./scripts/start.sh dev server
 
 .PHONY: test
 test: ## runs unit tests in a local development Docker container
@@ -29,10 +37,6 @@ test: ## runs unit tests in a local development Docker container
 .PHONY: serve-tests
 serve-tests: ## runs unit tests on every file change
 	find ./src | entr make test
-
-.PHONY: format
-format: ## runs the python Black formatter on all src files and test
-	black src
 
 ##############
 # UAT Workflow
