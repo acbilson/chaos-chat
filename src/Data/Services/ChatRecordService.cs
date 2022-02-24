@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 namespace src.Data;
 
 public class ChatRecordService
@@ -6,9 +7,7 @@ public class ChatRecordService
     {
       using (var db = new ChatContext())
       {
-	Console.WriteLine($"Database path: {db.DbPath}");
-
-	return db.ChatRecords.ToList();
+	return db.ChatRecords.AsNoTracking().ToList();
       }
     }
 
@@ -16,10 +15,8 @@ public class ChatRecordService
     {
       using (var db = new ChatContext())
       {
-	Console.WriteLine($"content: {record.Content}, date: {record.CreatedOn}, userId:{record.CreatedBy.Id}, userName:{record.CreatedBy.Name}");
 	db.ChatRecords.Add(record);
 	db.SaveChanges();
       }
     }
-
 }

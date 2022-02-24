@@ -57,7 +57,7 @@ else
             @foreach (var record in chatUsers)
             {
                 <tr>
-                    <td>@record.Id</td>
+                    <td>@record.ChatUserId</td>
                     <td>@record.Name</td>
                 </tr>
             }
@@ -88,7 +88,7 @@ else
             @foreach (var record in chatRecords)
             {
                 <tr>
-                    <td>@record.Id</td>
+                    <td>@record.ChatRecordId</td>
                     <td>@record.Content</td>
                     <td>@record.CreatedOn</td>
                 </tr>
@@ -116,7 +116,7 @@ else
       if (!string.IsNullOrWhiteSpace(chatContent))
       {
 	var myUser = chatUsers.First();
-	var newRecord = new ChatRecord { Content = chatContent, CreatedOn = DateTime.Today, CreatedBy = myUser };
+	var newRecord = new ChatRecord { Content = chatContent, CreatedOn = DateTime.Today, ChatUserId = myUser.ChatUserId };
 	ChatService.AddChatRecord(newRecord);
       }
 

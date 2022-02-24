@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-
 namespace src.Data;
 
 public class ChatContext : DbContext
@@ -16,5 +15,9 @@ public class ChatContext : DbContext
     DbPath = System.IO.Path.Join(path, "chat.db");
   }
 
-  protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite($"Data Source={DbPath}");
+  protected override void OnConfiguring(DbContextOptionsBuilder options)
+  {
+    options.UseSqlite($"Data Source={DbPath}");
+    options.LogTo(Console.WriteLine, LogLevel.Information);
+  }
 }
