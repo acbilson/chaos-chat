@@ -1,0 +1,124 @@
+﻿@page "/fetchdata"
+
+<PageTitle>Weather forecast</PageTitle>
+
+@using src.Data
+@inject WeatherForecastService ForecastService
+@inject ChatRecordService ChatService
+@inject ChatUserService UserService
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (chatUsers == null)
+{
+    <p><em>Chat Users Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in chatUsers)
+            {
+                <tr>
+                    <td>@record.Id</td>
+                    <td>@record.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+<input placeholder="Chat here..." @bind="chatContent" />
+<button class="btn btn-primary" @onclick="AddChatRecord">Add</button>
+
+@if (chatRecords == null)
+{
+    <p><em>Chat Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Content</th>
+                <th>Date</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in chatRecords)
+            {
+                <tr>
+                    <td>@record.Id</td>
+                    <td>@record.Content</td>
+                    <td>@record.CreatedOn</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private WeatherForecast[]? forecasts;
+    private List<ChatRecord>? chatRecords;
+    private List<ChatUser>? chatUsers;
+    private string? chatContent;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+	chatRecords = ChatService.GetChatRecords();
+	chatUsers = UserService.GetChatUsers();
+    }
+
+    private void AddChatRecord()
+    {
+      if (!string.IsNullOrWhiteSpace(chatContent))
+      {
+	var myUser = chatUsers.First();
+	var newRecord = new ChatRecord { Content = chatContent, CreatedOn = DateTime.Today, CreatedBy = myUser };
+	ChatService.AddChatRecord(newRecord);
+      }
+
+    }
+}

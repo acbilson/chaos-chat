@@ -6,14 +6,8 @@ ENVIRONMENT=$1
 case $ENVIRONMENT in
 
 dev)
-  echo "builds development client image..."
-  docker build -f client/Dockerfile \
-    --target=dev \
-    --build-arg EXPOSED_PORT=${CLIENT_EXPOSED_PORT} \
-    -t acbilson/${CLIENT_IMAGE_NAME}-dev:6.0 .
-
   echo "builds development server image..."
-  docker build -f server/Dockerfile \
+  docker build -f Dockerfile \
     --target=dev \
     --build-arg EXPOSED_PORT=${SERVER_EXPOSED_PORT} \
     -t acbilson/${SERVER_IMAGE_NAME}-dev:6.0 .

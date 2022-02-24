@@ -1,4 +1,7 @@
 .env
+/src/bin
+/src/obj
+/src/wwwroot
 /client/src/bin
 /client/src/obj
 /server/src/bin

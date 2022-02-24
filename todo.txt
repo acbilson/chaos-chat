@@ -1,0 +1,1 @@
+figure out why I can't add a ChatRecord to EFCore b/c of foreign key constraint with ChatUser
