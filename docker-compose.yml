@@ -2,8 +2,8 @@ version: '3.7'
 services:
 
   client:
-    image: acbilson/fire-tables-client-dev:6.0
-    container_name: fire-tables-client
+    image: acbilson/chaos-chat-client-dev:6.0
+    container_name: chaos-chat-client
     volumes:
       - ./client/src:/src
     ports:
@@ -11,8 +11,8 @@ services:
 
 
   server:
-    image: acbilson/fire-tables-server-dev:6.0
-    container_name: fire-tables-server
+    image: acbilson/chaos-chat-server-dev:6.0
+    container_name: chaos-chat-server
     volumes:
       - ./server/src:/src
     ports:

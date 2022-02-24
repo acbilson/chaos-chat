@@ -22,6 +22,10 @@ build: ## builds a local development Docker image
 start: ## starts both local development Docker containers
 	. ./scripts/start.sh dev
 
+.PHONY: stop
+stop: ## stops the local development Docker containers
+	. ./scripts/stop.sh dev
+
 .PHONY: start-client
 start-client: ## starts a local development Docker container
 	. ./scripts/start.sh dev client
@@ -74,8 +78,8 @@ build-prod: ## builds a remote production Docker image
 deploy: ## deploys the remote production Docker image
 	. ./scripts/deploy.sh prod
 
-.PHONY: stop
-stop: ## stops the remote prod service
+.PHONY: stop-prod
+stop-prod: ## stops the remote prod service
 	. ./scripts/stop.sh prod
 
 .PHONY: redeploy

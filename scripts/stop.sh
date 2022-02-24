@@ -5,6 +5,10 @@ ENVIRONMENT=$1
 
 case $ENVIRONMENT in
 
+dev)
+  echo "stops container in dev..."
+  docker-compose down
+;;
 uat)
   echo "stops container in uat..."
 ;;
@@ -14,7 +18,7 @@ prod)
 ;;
 
 *)
-  echo "please provide one of the following as the first argument: uat, prod."
+  echo "please provide one of the following as the first argument: dev, uat, prod."
   exit 1
 
 esac
