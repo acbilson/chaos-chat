@@ -26,14 +26,6 @@ start: ## starts both local development Docker containers
 stop: ## stops the local development Docker containers
 	. ./scripts/stop.sh dev
 
-.PHONY: start-client
-start-client: ## starts a local development Docker container
-	. ./scripts/start.sh dev client
-
-.PHONY: start-server
-start-server: ## starts a local development Docker container
-	. ./scripts/start.sh dev server
-
 .PHONY: test
 test: ## runs unit tests in a local development Docker container
 	. ./scripts/start.sh test

@@ -7,7 +7,6 @@ case $ENVIRONMENT in
 
 dev)
   echo "stops container in dev..."
-  docker-compose down
 ;;
 uat)
   echo "stops container in uat..."

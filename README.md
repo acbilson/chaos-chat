@@ -1,2 +1,2 @@
-# fire-tables
-Quickly render a SQL table to your browser with Blazor
+# Chaos Chat
+A Blazor Server chat room for private, locally-hosted conversation.
